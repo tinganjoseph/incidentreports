@@ -74,6 +74,7 @@ app.get("/incidents/list", async (req, res)=>{
         console.log(err);
     } 
 });
+app.get('/api', (req, res) => res.send('Testing this endpoint on the server!!!!'));
 
 app.listen(port, () => {
   console.log(`server is up and listening on port ${port}`);

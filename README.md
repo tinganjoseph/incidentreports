@@ -6,4 +6,33 @@ Once you have the weather data, you can store it in a table called "incidents" i
 
 Finally, you can create a GET endpoint using the app.get() method in Express, which retrieves all the incident reports from the "incidents" table and returns them in the response.
 
-Here is an example implementation of the POST endpoint:
+
+//Creating the database with the table on Linode server instance
+
+CREATE USER postgres WITH PASSWORD '8omktnpost'
+CREATE DATABASE RelloDb;
+GRANT ALL PRIVILEGES ON DATABASE RelloDb TO postgres;
+
+psql -d RelloDb -U postgres -W 8omktnpost
+
+
+CREATE TABLE incidents (
+	client_id INT PRIMARY KEY NOT NULL,
+	incident_desc VARCHAR ( 50 ) NOT NULL,
+	city VARCHAR ( 50 ) NOT NULL,
+	country VARCHAR ( 255 )  NOT NULL,
+	date date NOT NULL,
+    weather_report json NOT NULL
+        
+);
+
+
+Server configuration for PostgreSQL .env 
+PORT=2000
+PGUSER=postgres
+PGHOST=74.207.229.54
+PGPASSWORD=8omktnpost
+PGDATABASE=RelloDb
+PGPORT=5432
+ApiUrl= "https://api.openweathermap.org/data/2.5/weather"
+ApiKey ="76c6c002ca4341f041228ef68abfd1bd"
