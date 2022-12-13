@@ -22,7 +22,7 @@ const weatherApiKey = "76c6c002ca4341f041228ef68abfd1bd";
 const port = process.env.PORT || 9000;
 
 // POST endpoint to receive and store the incident report
-app.post("/incidents", (req, res) => {
+app.post("/api/incidents", (req, res) => {
   // Get the incident data from the request body
   const { client_id, incident_desc, city, country } = req.body;
 
@@ -59,7 +59,7 @@ app.post("/incidents", (req, res) => {
 });
 
 
-app.get("/incidents/list", async (req, res)=>{
+app.get("/api/incidents/list", async (req, res)=>{
     try {
       //running a query to fetch 
      const results = await db.query("select * from incidents");

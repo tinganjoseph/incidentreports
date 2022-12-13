@@ -9,11 +9,11 @@ Finally, you can create a GET endpoint using the app.get() method in Express, wh
 
 //Creating the database with the table on Linode server instance
 
-CREATE USER postgres WITH PASSWORD '8omktnpost'
+CREATE USER admin WITH PASSWORD '8omktnpost'
 CREATE DATABASE RelloDb;
 GRANT ALL PRIVILEGES ON DATABASE RelloDb TO postgres;
 
-psql -d RelloDb -U postgres -W 8omktnpost
+psql -d rellodb -U postgres -W 8omktnpost
 
 
 CREATE TABLE incidents (
@@ -29,10 +29,68 @@ CREATE TABLE incidents (
 
 Server configuration for PostgreSQL .env 
 PORT=2000
-PGUSER=postgres
+PGUSER=joe
 PGHOST=74.207.229.54
-PGPASSWORD=8omktnpost
+PGPASSWORD=123456789
 PGDATABASE=RelloDb
 PGPORT=5432
 ApiUrl= "https://api.openweathermap.org/data/2.5/weather"
 ApiKey ="76c6c002ca4341f041228ef68abfd1bd"
+
+
+host    RelloDb    postgres    74.207.229.54/32    8omktnpost
+host          DATABASE  USER  ADDRESS  METHOD  [OPTIONS]
+sudo su - postgres
+psql
+sudo service postgresql restart
+ps aux | grep postgres
+
+cd /etc/postgresql/14/main
+nano postgresql.conf
+nano pg_hba.conf
+
+
+#listen_addresses = 'localhost'        # what IP address(es) to listen on;
+listen_addresses = '*'                 # what IP address(es) to listen on;
+
+#port = 5432                           # (change requires restart)
+port = 5432                           # (change requires restart)
+
+
+
+sudo service postgresql start
+sudo service postgresql status
+
+
+sudo -u postgres psql
+CREATE USER myuser WITH PASSWORD 'mypassword'
+
+sudo -u postgres psql
+
+# In the psql interface, create a new user:
+CREATE USER myuser WITH PASSWORD 'mypassword';
+
+# Create a new database:
+CREATE DATABASE RelloDb;
+
+# Grant privileges to the new user for the new database:
+GRANT ALL PRIVILEGES ON DATABASE RelloDb TO myuser;
+
+# Exit the psql interface:
+\q
+
+
+CREATE USER joe WITH SUPERUSER;
+
+ALTER USER admin WITH PASSWORD '123456789';
+SELECT * FROM pg_catalog.pg_user;
+
+systemctl restart nginx
+
+
+psql -h localhost -U joe rellodb
+
+
+
+incidents
+rellodb
