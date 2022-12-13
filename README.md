@@ -1,3 +1,8 @@
+
+#How I created these endpoints
+
+//First
+
 To implement this, you would need to first create a POST endpoint in your Express.js server that accepts a JSON object containing the incident report data. This can be done using the app.post() method in Express.
 
 Next, you would need to fetch the weather data for the specified city and country using the OpenWeatherMap API. This can be done using the fetch() method, which allows you to make HTTP requests to external APIs.
@@ -6,16 +11,39 @@ Once you have the weather data, you can store it in a table called "incidents" i
 
 Finally, you can create a GET endpoint using the app.get() method in Express, which retrieves all the incident reports from the "incidents" table and returns them in the response.
 
+//Second
 
-//Creating the database with the table on Linode server instance
-
-CREATE USER admin WITH PASSWORD '8omktnpost'
-CREATE DATABASE RelloDb;
-GRANT ALL PRIVILEGES ON DATABASE RelloDb TO postgres;
-
-psql -d rellodb -U postgres -W 8omktnpost
+Creating the application on Linode server instance
 
 
+To deploy a Node.js application on Linode, you will first need to create a Linode account and set up a Linux-based virtual server (also known as a "Linode") where your application will be hosted.
+
+Once your Linode is set up, you can connect to it using SSH and install Node.js and any other necessary dependencies. You can then upload your application code to the Linode and run it using a Node.js process manager, such as PM2.
+
+Here is a brief overview of the steps you will need to follow:
+
+Sign up for a Linode account and create a new Linode.
+Connect to your Linode using SSH.
+Install Node.js and any necessary dependencies.
+Upload your application code to the Linode.
+Use a Node.js process manager to run your application.
+
+
+//Third
+
+To create a PostgreSQL database on AWS RDS (Amazon Relational Database Service), you will need to complete the following steps:
+
+Sign up for an AWS account and log in to the AWS Management Console.
+In the AWS Management Console, navigate to the RDS page and click on the "Create database" button.
+On the "Create database" page, select "PostgreSQL" as the database engine and choose the desired configuration options for your database, such as the instance size and storage capacity.
+Specify a name and password for the database's master user, and configure any additional security settings as needed.
+Click on the "Create database" button to launch the database.
+It may take several minutes for the database to be created and become available. Once it is ready, you can connect to it using any PostgreSQL client and begin using it to store and manage your data.
+
+For more detailed instructions and additional options, you can refer to the AWS RDS documentation. It's also a good idea to familiarize yourself with the basics of AWS and database management before attempting to create a PostgreSQL database on RDS.
+
+
+schema
 CREATE TABLE incidents (
 	client_id INT PRIMARY KEY NOT NULL,
 	incident_desc VARCHAR ( 50 ) NOT NULL,
@@ -27,6 +55,8 @@ CREATE TABLE incidents (
 );
 
 
+
+Thank you!!!!!!!
 
 
 
